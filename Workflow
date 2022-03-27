@@ -128,3 +128,9 @@ jobs:
         run: |
           npm install -g yarn
           make test-ts
+          build-args: |
+            BUILD_ARGS=build-${{ matrix.network }}-internal-release
+            GIT_COMMIT=${{ env.GITHUB_SHA }}
+          file: scripts/Dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
